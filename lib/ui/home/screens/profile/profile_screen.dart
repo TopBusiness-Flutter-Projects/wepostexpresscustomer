@@ -43,11 +43,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           leadingWidth: 0,
           leading: Container(),
-          backgroundColor: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+          backgroundColor: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
           title: Text(
             tr(LocalKeys.profile),
             style: TextStyle(
-              color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+              color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
               fontWeight: FontWeight.w600,
             ),
           ),

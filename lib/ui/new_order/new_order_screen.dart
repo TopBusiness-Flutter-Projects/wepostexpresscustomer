@@ -103,7 +103,7 @@ class _NewOrderState extends State<NewOrderScreen> with AfterLayoutMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
                         child: Column(
                           children: [
                             SizedBox(
@@ -118,7 +118,7 @@ class _NewOrderState extends State<NewOrderScreen> with AfterLayoutMixin {
                                   height: MediaQuery.of(context).size.height * (5.91 / 100),
                                   child: IconButton(
                                     icon: Icon(Icons.arrow_back_ios,
-                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
                                     ),
                                     onPressed: () {
                                       if (BlocProvider.of<NewOrderBloc>(context).currentIndex !=
@@ -138,7 +138,7 @@ class _NewOrderState extends State<NewOrderScreen> with AfterLayoutMixin {
                                       tr(LocalKeys.add_shipment),
                                       style: TextStyle(
                                         fontSize: 16,
-                                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+                                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
                                       ),
                                     ),
                                   ),

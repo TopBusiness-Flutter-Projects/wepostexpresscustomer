@@ -44,7 +44,7 @@ class NotificationsScreen extends StatelessWidget {
                 height: (MediaQuery.of(context).size.height * (15.67 / 100)),
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.zero,
-                color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+                color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
                 alignment: Alignment.topCenter,
                 child: Stack(
                   alignment: Alignment.topCenter,
@@ -52,7 +52,7 @@ class NotificationsScreen extends StatelessWidget {
                     SvgPicture.asset(
                       'assets/icons/notifications_bg.svg',
                       fit: BoxFit.cover,
-                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.width,
                     ),

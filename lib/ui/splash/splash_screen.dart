@@ -59,14 +59,14 @@ class SplashScreen extends StatelessWidget {
         },
         child: Scaffold(
           backgroundColor:
-              rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+              rgboOrHex(Config.get.styling[Config.get.themeMode].background),
           body: Stack(
             children: [
               Column(
                 children: [
                   Expanded(
-                      child: MySVG(
-                    svgPath: 'assets/icons/splash_background.svg',
+                      child: Container(
+// /                    svgPath: 'assets/icons/splash_background.svg',
                   )),
                   Spacer(),
                 ],

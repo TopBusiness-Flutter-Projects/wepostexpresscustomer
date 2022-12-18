@@ -72,14 +72,16 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
               child: Container(
                 height: (MediaQuery.of(context).size.height * (47.0 / 100)) -
                     (MediaQuery.of(context).size.height * (3.0 / 100)),
-                color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+                color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
                 child: Stack(
                   children: [
                     Column(
                       children: [
                         Expanded(
-                          child: MySVG(
-                            svgPath: 'assets/icons/splash_background.svg',
+                          child: Container(
+                              color: rgboOrHex(Config.get.styling[Config.get.themeMode].background).withOpacity(0.1),
+
+                            // svgPath: 'assets/icons/splash_background.svg',
                           ),
                         ),
                         Spacer(),
@@ -101,7 +103,7 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                   child: Container(
                                     padding: EdgeInsets.all(10),
                                     child: Text(tr(LocalKeys.register),style: TextStyle(
-                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),),
@@ -114,7 +116,7 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                   child: Container(
                                     padding: EdgeInsets.all(10),
                                     child: Text(tr(LocalKeys.login),style: TextStyle(
-                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+                                      color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                     ),),
@@ -145,7 +147,7 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                 margin: EdgeInsets.symmetric(
                                     horizontal: MediaQuery.of(context).size.width * (5.3 / 100)),
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary).withOpacity(0.1),
                                   borderRadius: BorderRadius.all(Radius.circular(50.0)),
                                 ),
                                 child: Row(
@@ -219,7 +221,8 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                               if(!widget.isGuest)
                                 Container(
                                 width: double.infinity,
-                                margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (5.3 / 100)),
+
+                                  margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (5.3 / 100)),
                                 child: MainButton(
                                   borderRadius: 0,
                                   onPressed: () {
@@ -230,7 +233,7 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                   },
                                   text: tr(LocalKeys.create_mission),
                                   textColor: rgboOrHex(Config.get.styling[Config.get.themeMode].secondary),
-                                  color: rgboOrHex(Config.get.styling[Config.get.themeMode].buttonTextColor),
+                                  color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary).withOpacity(0.1),
                                 ),
                               ),
                             ],
@@ -255,7 +258,7 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                     children: [
                       Container(
                         width: double.infinity,
-                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
                         child: Row(
                           children: [
                             SizedBox(
@@ -264,13 +267,15 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                             Expanded(
                               child: TabBar(
                                 isScrollable: true,
-                                indicatorColor: Colors.white,
+                                indicatorColor: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
+
                                 tabs: [
                                   Tab(
                                     child: Text(
                                       tr(LocalKeys.shipments),
                                       style: TextStyle(
                                         fontSize: 12,
+                                        color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -313,15 +318,17 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                   Container(
                     margin: EdgeInsets.only(top: 16.0,),
                     decoration: BoxDecoration(
-                            color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary),
-                            border: Border.all(width: 5,
-                              color: Color(0xffF7F7FB),
+                            color: rgboOrHex(Config.get.styling[Config.get.themeMode].background),
+                            border: Border.all(width: 1,
+                                color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary)
+                                ,
                             ),
                             borderRadius: BorderRadius.all(Radius.circular(50))
                     ),
                     child: IconButton(
                       icon: Icon(Icons.add,
-                        color: Color(0xffF7F7FB),
+                          color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary)
+                          ,
                       ),
                       onPressed: () {
                         Navigator.push(context,MaterialPageRoute(builder: (_)=> NewOrderScreen())).then((value) {
