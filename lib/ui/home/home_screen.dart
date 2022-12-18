@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 highlightElevation: 0,
                 padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary).withOpacity(0.1),
+                color: rgboOrHex(Config.get.styling[Config.get.themeMode].background).withOpacity(0.1),
                 child: Text(tr(LocalKeys.dismiss), style: TextStyle(fontSize: 12)),
               ),
             ],
