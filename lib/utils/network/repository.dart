@@ -402,8 +402,12 @@ class RepoImpl extends Repository {
         List<AddressResponseModel> addressModels=[];
         final call = await apiHelper.getData(di<Config>().baseURL, 'getAddresses?client_id=${user.id}', token: user.api_token,);
         final data = jsonDecode(call);
+        try{
         for(int index =0; index < (data as List).length;index++){
           addressModels.add(AddressResponseModel.fromJson(data[index]));
+        }}
+        catch (e){
+
         }
         return addressModels;
       },
@@ -554,9 +558,13 @@ class RepoImpl extends Repository {
         final data =await jsonDecode(call);
         print('getPaymentTypes');
         print(data);
+       try{
         for(int index = 0; index < (data as List).length;index++  ){
           list.add(PaymentMethodModel.fromJson(data[index]));
-        }
+        }}
+       catch (e){
+
+       }
         return list;
 
       },

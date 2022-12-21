@@ -217,23 +217,33 @@ class NewOrderBloc extends Bloc<NewOrderEvents, NewOrderStates> {
       if(dateTime==null){
         dateTime = DateTime.now().add(Duration(days: int.parse(settings?.firstWhere((element) => element.key ==SettingsNewOrder.is_date_required)?.value??'0')));
       }
-
+try{
       if(selectedBranch ==null && branches != []){
         selectedBranch = branches.firstWhere((element) {
           return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_branch)?.value??'0';
         });
-      }
+      }}catch
+    (e){
 
-      if(paymentMethodModel ==null && paymentMethods != []){
-        paymentMethodModel = paymentMethods.firstWhere((element) {
-          print('paymentMethodspaymentMethods');
-          print(element.id);
-          print(element.value);
-          print(settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_method)?.toJson()??'0');
-          return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_method)?.value??'0';
-        });
-      }
+    }
+try {
+  if (paymentMethodModel == null && paymentMethods != []) {
+    paymentMethodModel = paymentMethods.firstWhere((element) {
+      print('paymentMethodspaymentMethods');
+      print(element.id);
+      print(element.value);
+      print(settings?.firstWhere((element) => element.key ==
+          SettingsNewOrder.def_payment_method)?.toJson() ?? '0');
+      return element.id == settings
+          ?.firstWhere((element) =>
+      element.key == SettingsNewOrder.def_payment_method)
+          ?.value ?? '0';
+    });
+  }
+}
+      catch(e){
 
+      }
       if(paymentType ==null ){
         paymentType = int.parse(settings.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_type).value);
       }

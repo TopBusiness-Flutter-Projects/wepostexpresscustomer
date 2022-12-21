@@ -11,10 +11,10 @@ class ShipmentResponseModel {
 
   static fromJson(user) {
     List<ShipmentModel> ships=[];
-
+if(user['data']!=null){
     for(int index = 0; index < (user['data'] as List).length;index++  ){
       ships.add(ShipmentModel.fromJson(user['data'][index]));
-    }
+    }}
 
     return ShipmentResponseModel(
       current_page: user['current_page'].toString(),
