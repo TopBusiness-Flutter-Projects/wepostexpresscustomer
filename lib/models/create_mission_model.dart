@@ -21,7 +21,7 @@ class CreateMissionModel {
 
   toJson() {
     Map<String, String> shipmentPackages = {};
-
+print("sldlldl${checkedShipments.length}");
     for (var index = 0; index < checkedShipments.length; index++) {
       shipmentPackages.addAll({
         'checked_ids[$index]': checkedShipments[index].id,
@@ -30,8 +30,8 @@ class CreateMissionModel {
 
     shipmentPackages.addAll({
       'type': type,
-      'Mission[client_id]': clientId,
-      'Mission[address]': clientAddress,
+      'Mission.client_id': clientId,
+      'Mission.address': clientAddress,
       // 'Mission[to_branch_id]': clientToBranchId,
     });
     return shipmentPackages;

@@ -2847,7 +2847,7 @@ class _NewOrderState extends State<NewOrderScreen> with AfterLayoutMixin {
                       vertical: MediaQuery.of(context).size.width * (3.4 / 100)),
                   child: Container(
                     width: double.infinity,
-                    child: Text(BlocProvider.of<NewOrderBloc>(blocContext).paymentMethods[index].name),
+                     child: Text(BlocProvider.of<NewOrderBloc>(blocContext).paymentMethods[index].name),
                   ),
                 ),
               ),

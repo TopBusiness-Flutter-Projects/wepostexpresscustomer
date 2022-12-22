@@ -98,7 +98,7 @@ class NewOrderBloc extends Bloc<NewOrderEvents, NewOrderStates> {
         shipment_from_country_id: senderAddress.country_id,
         shipment_from_state_id: senderAddress.state_id,
         amount_to_be_collected: amount_to_be_collected,
-        shipment_payment_method_id: paymentMethodModel.id.toString(),
+        shipment_payment_method_id: paymentMethodModel.name.toString(),
       ));
       response.fold((l) => showToast(l,false), (r) => showToast(r,true));
       yield SuccessCreateOrderState();
@@ -217,41 +217,35 @@ class NewOrderBloc extends Bloc<NewOrderEvents, NewOrderStates> {
       if(dateTime==null){
         dateTime = DateTime.now().add(Duration(days: int.parse(settings?.firstWhere((element) => element.key ==SettingsNewOrder.is_date_required)?.value??'0')));
       }
-try{
-      if(selectedBranch ==null && branches != []){
-        selectedBranch = branches.firstWhere((element) {
-          return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_branch)?.value??'0';
+
+      if(selectedBranch ==null && branches != []&&branches.length>0){
+       print("ddkkd${branches.length}");
+       selectedBranch=branches.elementAt(0);
+        // selectedBranch = branches.firstWhere((element) {
+        //   return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_branch)?.value??'0';
+        // });
+        print("sslslsl${selectedBranch.name}");
+      }
+
+      if(paymentMethodModel ==null && paymentMethods != []&&paymentMethods.length>0){
+        paymentMethodModel = paymentMethods.firstWhere((element) {
+          print('paymentMethodspaymentMethods');
+          print(element.id);
+          print(element.value);
+          print(settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_method)?.toJson()??'0');
+          return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_method)?.value??'0';
         });
-      }}catch
-    (e){
-
-    }
-try {
-  if (paymentMethodModel == null && paymentMethods != []) {
-    paymentMethodModel = paymentMethods.firstWhere((element) {
-      print('paymentMethodspaymentMethods');
-      print(element.id);
-      print(element.value);
-      print(settings?.firstWhere((element) => element.key ==
-          SettingsNewOrder.def_payment_method)?.toJson() ?? '0');
-      return element.id == settings
-          ?.firstWhere((element) =>
-      element.key == SettingsNewOrder.def_payment_method)
-          ?.value ?? '0';
-    });
-  }
-}
-      catch(e){
-
       }
-      if(paymentType ==null ){
-        paymentType = int.parse(settings.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_type).value);
-      }
+
+      // if(paymentType ==null ){
+      //   paymentType = int.parse(settings.firstWhere((element) => element.key ==SettingsNewOrder.def_payment_type).value);
+      // }
 
       if(defaultPackage ==null && packages != []){
-        defaultPackage = packages.firstWhere((element) {
-          return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_package_type)?.value??'0';
-        });
+        defaultPackage = packages.elementAt(0);
+        // defaultPackage = packages.firstWhere((element) {
+        //   return element.id == settings?.firstWhere((element) => element.key ==SettingsNewOrder.def_package_type)?.value??'0';
+        // });
       }
 
       print('addresses');

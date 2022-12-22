@@ -619,9 +619,7 @@ class _NewOrderState extends State<ShipmentDetailsScreen> with AfterLayoutMixin 
                                               Container(
                                                   padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (4.2 / 100)),
                                                   child: Text(
-                                                      BlocProvider.of<ShipmentDetailsBloc>(context).paymentTypes.firstWhere((element) {
-                                                          return element.id.toString()== BlocProvider.of<ShipmentDetailsBloc>(context).shipmentModel.payment_method_id.toString();
-                                                      }).name,
+                                                      BlocProvider.of<ShipmentDetailsBloc>(context).shipmentModel.payment_method_id.toString(),
                                                       style: TextStyle(
                                                           color: rgboOrHex(Config.get.styling[Config.get.themeMode].secondary),
                                                           fontSize: 16,

@@ -218,24 +218,24 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                 SizedBox(
                                 height: MediaQuery.of(context).size.height * (3.0 / 100),
                               ),
-                              if(!widget.isGuest)
-                                Container(
-                                width: double.infinity,
-
-                                  margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (5.3 / 100)),
-                                child: MainButton(
-                                  borderRadius: 0,
-                                  onPressed: () {
-                                    Navigator.push(context,MaterialPageRoute(builder: (_)=> CreateMissionScreen())).then((value) {
-                                      BlocProvider.of<HomeBloc>(context).add(FetchHomeEvent(forFirstTime: false));
-                                      return null;
-                                    });
-                                  },
-                                  text: tr(LocalKeys.create_mission),
-                                  textColor: rgboOrHex(Config.get.styling[Config.get.themeMode].secondary),
-                                  color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary).withOpacity(0.1),
-                                ),
-                              ),
+                              // if(!widget.isGuest)
+                              //   Container(
+                              //   width: double.infinity,
+                              //
+                              //     margin: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (5.3 / 100)),
+                              //   child: MainButton(
+                              //     borderRadius: 0,
+                              //     onPressed: () {
+                              //       Navigator.push(context,MaterialPageRoute(builder: (_)=> CreateMissionScreen())).then((value) {
+                              //         BlocProvider.of<HomeBloc>(context).add(FetchHomeEvent(forFirstTime: false));
+                              //         return null;
+                              //       });
+                              //     },
+                              //     text: tr(LocalKeys.create_mission),
+                              //     textColor: rgboOrHex(Config.get.styling[Config.get.themeMode].secondary),
+                              //     color: rgboOrHex(Config.get.styling[Config.get.themeMode].primary).withOpacity(0.1),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ),
@@ -504,9 +504,10 @@ class _HomeSingleScreenState extends State<HomeSingleScreen> {
                                         child: Container(
                                           padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * (4.2 / 100)),
                                           child: Text(
-                                            BlocProvider.of<HomeBloc>(context).paymentTypes == null ||BlocProvider.of<HomeBloc>(context).paymentTypes.length == 0?'': BlocProvider.of<HomeBloc>(context).paymentTypes.firstWhere((element) {
-                                              return element.id.toString()== BlocProvider.of<HomeBloc>(context).shipments[index].payment_method_id.toString();
-                                            }).name,
+                      BlocProvider.of<HomeBloc>(context).shipments[index].payment_method_id.toString(),
+                                            // BlocProvider.of<HomeBloc>(context).paymentTypes == null ||BlocProvider.of<HomeBloc>(context).paymentTypes.length == 0?'': BlocProvider.of<HomeBloc>(context).paymentTypes.firstWhere((element) {
+                                            //   return element.name.toString()== BlocProvider.of<HomeBloc>(context).shipments[index].payment_method_id.toString();
+                                            // }).name,
                                             style: TextStyle(
                                               color: rgboOrHex(Config.get.styling[Config.get.themeMode].secondary),
                                               fontSize: 16,

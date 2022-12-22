@@ -59,6 +59,7 @@ abstract class Repository {
   });
 
   Future<Either<String, String>> createMission({
+
     CreateMissionModel createMissionModel,
   });
 
@@ -152,7 +153,7 @@ class RepoImpl extends Repository {
         print(authResponse.email);
         if(authResponse.error == null&& (authResponse.email == null||authResponse.email.isEmpty)){
           UserModel userModel = UserModel.fromJson(authResponse.user);
-          userModel.api_token = authResponse.api_token;
+          userModel.api_token = authResponse.remember_token;
           user = userModel;
           cacheHelper.put(AppKeys.userData, userModel.toJson());
           return userModel;
@@ -261,7 +262,7 @@ class RepoImpl extends Repository {
         print(authResponse.email);
         if(authResponse.email == null||authResponse.email.isEmpty){
           UserModel userModel = UserModel.fromJson(authResponse.user);
-          userModel.api_token = authResponse.api_token;
+          userModel.api_token = authResponse.remember_token;
           user = userModel;
           cacheHelper.put(AppKeys.userData, userModel.toJson());
           return userModel;
@@ -470,6 +471,7 @@ class RepoImpl extends Repository {
         final call = await apiHelper.getData(di<Config>().baseURL, 'shipment-setting', token: user.api_token,);
         if(call != null){
           final data =await jsonDecode(call);
+          print("dddd${data}");
           for(int index =0; index < (data as List).length;index++){
             list.add(ShipmentSettingsModel.fromJson(data[index]));
           }
@@ -498,6 +500,7 @@ class RepoImpl extends Repository {
             list.add(UserModel.fromJson(data[index]));
           }
         }
+        print("Flflfllf${list.length}");
         return list;
       },
       onServerError: (exception) async {
@@ -558,13 +561,41 @@ class RepoImpl extends Repository {
         final data =await jsonDecode(call);
         print('getPaymentTypes');
         print(data);
-       try{
-        for(int index = 0; index < (data as List).length;index++  ){
-          list.add(PaymentMethodModel.fromJson(data[index]));
-        }}
-       catch (e){
-
-       }
+       // print("object${data['paypal_payment']}");
+        if(!data['paypal_payment'].toString().contains("false")){
+          list.add(new PaymentMethodModel(name: 'paypal_payment'));}
+        if(!data['paystack'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'paystack'));}
+        if(!data['sslcommerz_payment'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'sslcommerz_payment'));}
+        if(!data['instamojo_payment'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'instamojo_payment'));}
+        if(!data['razorpay'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'razorpay'));}
+        if(!data['stripe_payment'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'stripe_payment'));}
+        if(!data['voguepay'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'voguepay'));}
+        if(!data['payhere'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'payhere'));}
+        if(!data['ngenius'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'ngenius'));}
+        if(!data['iyzico'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'iyzico'));}
+        if(!data['cash_payment'].toString().contains("false")){
+        list.add(new PaymentMethodModel(name: 'cash_payment'));}
+        if(!data['invoice_payment'].toString().contains("false")) {
+          list.add(new PaymentMethodModel(name: 'invoice_payment'));
+        }
+        //}
+       // try{
+       // // for(int index = 0; index < (data as List).length;index++  ){
+       //   // list.add(PaymentMethodModel.fromJson(data[index]));
+       //  //}
+       // }
+       // catch (e){
+       //
+       // }
         return list;
 
       },
@@ -608,6 +639,7 @@ class RepoImpl extends Repository {
         final call = await apiHelper.getData(di<Config>().baseURL, 'shipments?code=$code&client_id=${user?.id??''}}&page=${page??1}', token: user.api_token,);
         // final data2= (call.split(',"All Shipments",').first).substring(1,(call.split(',"All Shipments",').first).length);
         final data =await jsonDecode(call);
+        print("ddldlld$data");
         ShipmentResponseModel shipmentResponseModel = ShipmentResponseModel.fromJson(data);
         return shipmentResponseModel;
       },

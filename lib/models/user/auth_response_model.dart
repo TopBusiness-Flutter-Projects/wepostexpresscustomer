@@ -5,6 +5,7 @@ class AuthResponse {
     AuthResponse({
         this.error,
         this.token_type,
+        this.remember_token,
         this.email,
         this.api_token,
         this.expires_at,
@@ -36,6 +37,7 @@ class AuthResponse {
         AuthResponse authResponse = AuthResponse(
             expires_at: user['expires_at'],
             token_type: user['token_type'],
+            remember_token: user['remember_token'],
             user: user['user'],
             email: list,
             api_token: user['api_token'],
@@ -51,6 +53,7 @@ class AuthResponse {
     final String api_token;
     final List<String> email;
     final String token_type;
+    final String remember_token;
     final String error;
     Map user;
 }

@@ -45,7 +45,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> with AfterLayoutMixin {
   final formKey = GlobalKey<FormState>();
   TextEditingController addressController = TextEditingController();
-  DateFormat dateFormat = DateFormat('yyyy-MM-dd hh:mm');
+  DateFormat dateFormat = DateFormat('yyyy-MM-ddThh:mm');
   FocusNode focusNode = FocusNode();
 
   @override
