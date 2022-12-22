@@ -16,6 +16,8 @@ class UserModel {
         this.created_by_type,
         this.password,
         this.pickup_cost,
+        this.national_id,
+        this.branch_id,
         this.responsible_mobile,
         this.supply_cost,
         this.updated_at,
@@ -48,10 +50,14 @@ class UserModel {
     }
     Map<String, String> toJsonForRegister(String token) {
         return {
+            'responsible_name': name,
             'name': name,
             'email': email,
             'device_token': token,
             'password': password,
+            'type':"driver",
+            'branch_id':branch_id,
+            'national_id':national_id,
             'responsible_mobile': responsible_mobile,
         };
     }
@@ -89,6 +95,8 @@ class UserModel {
     String balance;
     final String responsible_mobile;
     final String password;
+    final String national_id;
+    final String branch_id;
     final String updated_at;
     final String created_at;
     final String created_by_type;

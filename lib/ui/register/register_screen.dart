@@ -707,6 +707,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     name: nameController.text,
                                     password: passwordController.text,
                                     responsible_mobile: mobileController.text,
+                                    national_id:BlocProvider.of<RegisterBloc>(context).selectedCountry.id,
+                                    branch_id:BlocProvider.of<RegisterBloc>(context).selectedCountry.id,
+
+
                                   )));
                         }
                       },
