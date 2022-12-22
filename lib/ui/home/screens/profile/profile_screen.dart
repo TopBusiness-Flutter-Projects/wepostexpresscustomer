@@ -17,6 +17,8 @@ import 'package:wepostexpresscustomer/utils/global/global_bloc.dart';
 import 'package:wepostexpresscustomer/utils/network/repository.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import '../../../splash/splash_screen.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -237,25 +239,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * (1 / 100),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              tr(LocalKeys.language),
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ),
-                          Text(
-                            tr(LocalKeys.english),
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          Icon(
-                            Icons.arrow_drop_down,
-                            size: 24,
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Expanded(
+                      //       child: Text(
+                      //         tr(LocalKeys.language),
+                      //         style: TextStyle(fontSize: 14),
+                      //       ),
+                      //     ),
+                      //     Text(
+                      //       tr(LocalKeys.english),
+                      //       style: TextStyle(fontSize: 14),
+                      //     ),
+                      //     Icon(
+                      //       Icons.arrow_drop_down,
+                      //       size: 24,
+                      //     ),
+                      //   ],
+                      // ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * (1 / 100),
                       ),
@@ -323,13 +325,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             children: [
               MaterialButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => 
+                    EasyLocalization.of(context).setLocale(const Locale('en')).then((value) =>  Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> SplashScreen()))),
                 padding: EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * (6.4 / 100),
                         vertical: MediaQuery.of(context).size.width * (3.4 / 100)),
                 child: Container(
                   width: double.infinity,
                   child: Text(tr(LocalKeys.english)),
+                ),
+              ),
+              MaterialButton(
+                onPressed: () =>  EasyLocalization.of(context).setLocale(Locale('ar')).then((value) =>   Navigator.pushReplacement(context,MaterialPageRoute(builder: (_)=> SplashScreen()))),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * (6.4 / 100),
+                    vertical: MediaQuery.of(context).size.width * (3.4 / 100)),
+                child: Container(
+                  width: double.infinity,
+                  child: Text(tr(LocalKeys.arabic)),
                 ),
               ),
               MaterialButton(

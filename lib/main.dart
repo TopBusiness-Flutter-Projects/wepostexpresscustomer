@@ -42,11 +42,11 @@ void main() async {
   runApp(
     EasyLocalization(
         supportedLocales: [
-          Locale(LocalKeys.en),
+          Locale(LocalKeys.ar),
         ],
         path: 'assets/langs',
         useOnlyLangCode: true,
-        fallbackLocale: Locale('en',),
+        fallbackLocale: Locale('ar',),
         child: MyApp()),
   );
 }

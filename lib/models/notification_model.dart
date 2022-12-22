@@ -39,19 +39,19 @@ class NotificationModel {
         print('userfromJson');
         print(user);
         return NotificationModel(
-            sender: UserModel.fromJson(user['data']['sender']??{}),
-            subject: user['data']['message']['subject'].toString(),
-            id: user['data']['message']['id'].toString(),
-            content: user['data']['message']['content'].toString(),
-            url: user['data']['message']['url'].toString(),
-            code: user['data']['message']['code'],
-            icon: user['data']['icon'].toString(),
-            type: user['data']['type'].toString(),
+            sender: user['sender'],
+            subject: user['message']['subject'].toString(),
+            id: user['message']['id'].toString(),
+            content: user['message']['content'].toString(),
+            url: user['message']['url'].toString(),
+            code: user['message']['code'],
+            icon: user['icon'].toString(),
+            type: user['type'].toString(),
             created_at: user['created_at'],
         );
     }
 
-    final UserModel sender;
+    final int sender;
     final String subject;
     final String created_at;
     final String id;
